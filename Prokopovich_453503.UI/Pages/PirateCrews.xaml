@@ -3,18 +3,65 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:Prokopovich_453503.UI.ViewModels"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:converters="clr-namespace:Prokopovich_453503.UI.ValueConverters"
              x:DataType="models:PirateCrewsViewModel"
              x:Class="Prokopovich_453503.UI.Pages.PirateCrews"
+             x:Name="Page"
              Title="PirateCrews">
+
+    <ContentPage.Resources>
+        <toolkit:IsNotNullConverter x:Key="IsNotNullConverter"/>
+        <converters:BountyToColorConverter x:Key="BountyToColor"/>
+    </ContentPage.Resources>
+    
     <ContentPage.Behaviors>
-        <toolkit:EventToCommandBehavior EventName="Loaded" 
-                                        Command="{Binding UpdateGroupListCommand }"/>
+        <toolkit:EventToCommandBehavior
+            BindingContext="{Binding Source={x:Reference Page}, Path=BindingContext}"
+            EventName="Loaded"
+            Command="{Binding UpdateGroupListCommand}" />
     </ContentPage.Behaviors>
+
     <VerticalStackLayout Padding="20">
-
         <Picker ItemsSource="{Binding PirateCrews}"
-                ItemDisplayBinding="{Binding Name}"
-                Title="Выберите команду" />
+        ItemDisplayBinding="{Binding Name}"
+        SelectedItem="{Binding SelectedCrew, Mode=TwoWay}"
+        Title="Выберите команду"
+        x:Name="CrewPicker">
+            <Picker.Behaviors>
+                <toolkit:EventToCommandBehavior
+            BindingContext="{Binding Source={x:Reference Page}, Path=BindingContext}"
+            EventName="SelectedIndexChanged"
+            Command="{Binding UpdateMembersListCommand}" />
+            </Picker.Behaviors>
+        </Picker>
 
+        <VerticalStackLayout IsVisible="{Binding SelectedCrew, Converter={StaticResource IsNotNullConverter}}">
+            <Label Text="{Binding SelectedCrew.Name}" FontSize="18" FontAttributes="Bold"/>
+            <Label Text="{Binding SelectedCrew.Ship, StringFormat='Корабль: {0}'}"/>
+            <Label Text="{Binding SelectedCrew.Status, StringFormat='Статус: {0}'}"/>
+        </VerticalStackLayout>
+
+
+        <CollectionView ItemsSource="{Binding Pirates}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="{x:Null}">
+                    <Border Margin="0,2" Padding="10"
+                    StrokeShape="RoundRectangle 8"
+                    Stroke="{Binding Bounty, Converter={StaticResource BountyToColor}}"
+                    StrokeThickness="2">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type models:PirateCrewsViewModel}}, Path=ShowDetailsCommand}"
+                                CommandParameter="{Binding}"/>
+                        </Border.GestureRecognizers>
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Name}" FontAttributes="Bold"/>
+                            <Label Text="{Binding Bounty, StringFormat='Bounty: {0} Berry'}"/>
+                            <Label Text="{Binding Role}"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </VerticalStackLayout>
 </ContentPage>

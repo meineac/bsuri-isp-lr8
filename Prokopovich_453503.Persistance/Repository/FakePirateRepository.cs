@@ -19,6 +19,11 @@ namespace Prokopovich_453503.Persistance.Repository
             _pirates.Add(pirate);
             pirate.JoinCrew(2);
 
+            pirate = new Pirate("Tony Tony Chopper", 200, "Doctor", ["Hito Hito No Mi", "Rumble ball"]);
+            pirate.Id = 3;
+            _pirates.Add(pirate);
+            pirate.JoinCrew(1);
+
         }
         public async Task<Pirate?> GetByIdAsync(
                 int id,

@@ -9,7 +9,7 @@ namespace Prokopovich_453503.Persistance
     {
         public static IServiceCollection AddPersistance(this IServiceCollection services)
         {
-            services.AddSingleton<IUnitOfWork, FakeUnitOfWork>();
+            services.AddSingleton<IUnitOfWork, EfUnitOfWork>();
             return services;
         }
         public static IServiceCollection AddPersistance(

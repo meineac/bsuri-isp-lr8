@@ -7,13 +7,15 @@ namespace Prokopovich_453503.UI
     {
         public static IServiceCollection RegisterPages(this IServiceCollection services)
         {
-            services.AddTransient<PirateCrews>();
+            services.AddTransient<PirateCrews>()
+                    .AddTransient<PirateDetails>();
             return services;
         }
 
         public static IServiceCollection RegisterViewModels(this IServiceCollection services)
         {
-            services.AddTransient<PirateCrewsViewModel>();
+            services.AddTransient<PirateCrewsViewModel>()
+                    .AddTransient<PirateDetailsViewModel>();
             return services;
         }
     }
