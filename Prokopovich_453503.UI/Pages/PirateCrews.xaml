@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Prokopovich_453503.UI.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:DataType="models:PirateCrewsViewModel"
+             x:Class="Prokopovich_453503.UI.Pages.PirateCrews"
+             Title="PirateCrews">
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior EventName="Loaded" 
+                                        Command="{Binding UpdateGroupListCommand }"/>
+    </ContentPage.Behaviors>
+    <VerticalStackLayout Padding="20">
+
+        <Picker ItemsSource="{Binding PirateCrews}"
+                ItemDisplayBinding="{Binding Name}"
+                Title="Выберите команду" />
+
+    </VerticalStackLayout>
+</ContentPage>

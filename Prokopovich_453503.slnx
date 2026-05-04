@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Prokopovich_453503.Application/Prokopovich_453503.Application.csproj" Id="54bc3567-f467-4f5b-8f32-a2756b5c3d9b" />
+  <Project Path="Prokopovich_453503.Domain/Prokopovich_453503.Domain.csproj" Id="500128ca-6032-44fc-9683-41882da63747" />
+  <Project Path="Prokopovich_453503.Persistance/Prokopovich_453503.Persistance.csproj" Id="e6e7edf2-34a3-404d-a992-64ad8d3313ef" />
+  <Project Path="Prokopovich_453503.UI/Prokopovich_453503.UI.csproj" />
+</Solution>

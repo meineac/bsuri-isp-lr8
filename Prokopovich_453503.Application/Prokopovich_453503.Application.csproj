@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="14.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Prokopovich_453503.Domain\Prokopovich_453503.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="PirateCrewUseCases\Commands\" />
+    <Folder Include="PirateUseCases\Commands\" />
+  </ItemGroup>
+
+</Project>
