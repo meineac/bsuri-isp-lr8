@@ -8,6 +8,9 @@ namespace Prokopovich_453503.UI
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(PirateDetails), typeof(PirateDetails));
+            Routing.RegisterRoute(nameof(AddEditCrewPage), typeof(AddEditCrewPage));
+            Routing.RegisterRoute(nameof(AddEditPiratePage), typeof(AddEditPiratePage));
+
         }
     }
 }

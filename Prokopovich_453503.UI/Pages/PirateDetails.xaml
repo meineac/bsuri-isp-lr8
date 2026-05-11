@@ -7,12 +7,28 @@
              x:Class="Prokopovich_453503.UI.Pages.PirateDetails"
              Title="{Binding Pirate.Name}">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="✏ Изменить" Command="{Binding EditCommand}"/>
+        <ToolbarItem Text="📷 Фото"    Command="{Binding PickImageCommand}"/>
+        <ToolbarItem Text="🗑 Удалить" Command="{Binding DeleteCommand}"/>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Resources>
         <converters:ListToStringConverter x:Key="ListToString"/>
     </ContentPage.Resources>
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="12">
+
+            <Image Source="{Binding PirateImage}"
+                   HeightRequest="220"
+                   WidthRequest="220"
+                   Aspect="AspectFill"
+                   HorizontalOptions="Center">
+                <Image.Clip>
+                    <EllipseGeometry Center="110,110" RadiusX="110" RadiusY="110"/>
+                </Image.Clip>
+            </Image>
 
             <Label Text="{Binding Pirate.Name}"
                    FontSize="26"
@@ -21,38 +37,26 @@
 
             <BoxView HeightRequest="1" Color="Gray" Margin="0,4"/>
 
-            <Grid ColumnDefinitions="Auto, *"
-                  RowDefinitions="Auto,Auto,Auto,Auto"
-                  ColumnSpacing="12"
-                  RowSpacing="10">
+            <Grid ColumnDefinitions="Auto,*"
+                  RowDefinitions="Auto,Auto,Auto"
+                  ColumnSpacing="12" RowSpacing="10">
 
                 <Label Grid.Row="0" Grid.Column="0"
-                       Text="Role:"
-                       FontAttributes="Bold"/>
+                       Text="Роль:" FontAttributes="Bold"/>
                 <Label Grid.Row="0" Grid.Column="1"
                        Text="{Binding Pirate.Role}"/>
 
                 <Label Grid.Row="1" Grid.Column="0"
-                       Text="Bounty:"
-                       FontAttributes="Bold"/>
+                       Text="Bounty:" FontAttributes="Bold"/>
                 <Label Grid.Row="1" Grid.Column="1"
                        Text="{Binding Pirate.Bounty, StringFormat='{0} Berry'}"/>
 
                 <Label Grid.Row="2" Grid.Column="0"
-                       Text="Crew ID:"
-                       FontAttributes="Bold"/>
+                       Text="Способности:" FontAttributes="Bold"/>
                 <Label Grid.Row="2" Grid.Column="1"
-                       Text="{Binding Pirate.CrewId}"/>
-
-                <Label Grid.Row="3" Grid.Column="0"
-                       Text="Abilities:"
-                       FontAttributes="Bold"/>
-                <Label Grid.Row="3" Grid.Column="1"
                        Text="{Binding Pirate.Abilities, Converter={StaticResource ListToString}}"/>
-
             </Grid>
 
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>

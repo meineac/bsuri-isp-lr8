@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <Folder Include="PirateCrewUseCases\Commands\" />
-    <Folder Include="PirateUseCases\Commands\" />
   </ItemGroup>
 
 </Project>

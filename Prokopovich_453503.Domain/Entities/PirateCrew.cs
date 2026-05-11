@@ -25,6 +25,11 @@
             Ship = ship;
             Status = status;
         }
-
+        public void Update(string name, string ship, CrewStatus status)
+        {
+            Name = name;
+            Ship = ship;
+            Status = status;
+        }
     }
 }

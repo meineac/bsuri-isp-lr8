@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Prokopovich_453503.UI.ViewModels"
+             x:DataType="models:AddEditCrewViewModel"
+             x:Class="Prokopovich_453503.UI.Pages.AddEditCrewPage"
+             Title="{Binding PageTitle}">
+
+    <VerticalStackLayout Padding="20" Spacing="12">
+
+        <Label Text="Название команды" FontAttributes="Bold"/>
+        <Entry Text="{Binding Name}" Placeholder="Введите название"/>
+
+        <Label Text="Корабль" FontAttributes="Bold"/>
+        <Entry Text="{Binding Ship}" Placeholder="Введите корабль"/>
+
+        <Label Text="Статус" FontAttributes="Bold"/>
+        <Picker ItemsSource="{Binding AllStatuses}"
+                SelectedItem="{Binding SelectedStatus, Mode=TwoWay}"/>
+
+        <Button Text="Сохранить"
+                Command="{Binding SaveCommand}"
+                BackgroundColor="#5E35B1"
+                TextColor="White"
+                CornerRadius="8"
+                Margin="0,10,0,0"/>
+
+        <Button Text="Отмена"
+                Command="{Binding CancelCommand}"
+                BackgroundColor="Gray"
+                TextColor="White"
+                CornerRadius="8"/>
+    </VerticalStackLayout>
+</ContentPage>

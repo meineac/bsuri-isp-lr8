@@ -21,6 +21,21 @@
             Command="{Binding UpdateGroupListCommand}" />
     </ContentPage.Behaviors>
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+ Команда"
+                 Command="{Binding AddCrewCommand}"
+                 Order="Primary"/>
+        <ToolbarItem Text="✏ Команда"
+                 Command="{Binding EditCrewCommand}"
+                 Order="Secondary"/>
+        <ToolbarItem Text="🗑 Команда"
+                 Command="{Binding DeleteCrewCommand}"
+                 Order="Secondary"/>
+        <ToolbarItem Text="+ Пират"
+                 Command="{Binding AddPirateCommand}"
+                 Order="Primary"/>
+    </ContentPage.ToolbarItems>
+
     <VerticalStackLayout Padding="20">
         <Picker ItemsSource="{Binding PirateCrews}"
         ItemDisplayBinding="{Binding Name}"

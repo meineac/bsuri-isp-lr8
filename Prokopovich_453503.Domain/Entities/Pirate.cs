@@ -32,5 +32,18 @@
                 Bounty = bounty;
             }
         }
+        public void Update(string name, long bounty, string role, List<string>? abilities = null)
+        {
+            Name = name;
+            Bounty = bounty;
+            Role = role;
+            if (abilities != null)
+                Abilities = abilities;
+        }
+        public void MoveToCrew(int crewId)
+        {
+            if (crewId > 0)
+                CrewId = crewId;
+        }
     }
 }

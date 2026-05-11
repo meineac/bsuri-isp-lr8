@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Prokopovich_453503.Application.PirateCrewUseCases.Commands;
 using Prokopovich_453503.Application.PirateCrewUseCases.Queries;
 using Prokopovich_453503.Application.PirateUseCases.Queries;
 using Prokopovich_453503.UI.Pages;
@@ -37,6 +38,48 @@ namespace Prokopovich_453503.UI.ViewModels
             {
                 ["Pirate"] = pirate
             });
+        }
+        [RelayCommand]
+        private async Task AddCrew()
+        {
+            await Shell.Current.GoToAsync(nameof(AddEditCrewPage));
+        }
+
+        [RelayCommand]
+        private async Task EditCrew()
+        {
+            if (SelectedCrew is null)
+            {
+                await Shell.Current.DisplayAlert("Внимание", "Сначала выберите команду", "OK");
+                return;
+            }
+            await Shell.Current.GoToAsync(nameof(AddEditCrewPage),
+                new Dictionary<string, object> { ["Crew"] = SelectedCrew });
+        }
+
+        [RelayCommand]
+        private async Task DeleteCrew()
+        {
+            if (SelectedCrew is null) return;
+            bool confirm = await Shell.Current.DisplayAlert(
+                "Удаление", $"Удалить команду «{SelectedCrew.Name}»?", "Да", "Нет");
+            if (!confirm) return;
+
+            await _mediator.Send(new DeletePirateCrewCommand(SelectedCrew.Id));
+            await GetPirateCrews();
+            SelectedCrew = null;
+        }
+
+        [RelayCommand]
+        private async Task AddPirate()
+        {
+            if (SelectedCrew is null)
+            {
+                await Shell.Current.DisplayAlert("Внимание", "Сначала выберите команду", "OK");
+                return;
+            }
+            await Shell.Current.GoToAsync(nameof(AddEditPiratePage),
+                new Dictionary<string, object> { ["CrewId"] = SelectedCrew.Id });
         }
 
         public async Task GetPirateCrews()

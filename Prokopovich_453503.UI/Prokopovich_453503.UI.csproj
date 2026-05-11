@@ -89,6 +89,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Pages\AddEditCrewPage.xaml.cs">
+	    <DependentUpon>AddEditCrewPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Pages\AddEditCrewPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\AddEditPiratePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\PirateCrews.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
